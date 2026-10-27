@@ -22,3 +22,6 @@ Built while learning JavaScript, with AI help. I'm rebuilding it piece by piece 
 
 ## Next
 - Rebuild "Add a goal" from a blank file by 31st October 2026
+
+Live demo:
+https://emomotimi01.github.io/my-goal-tracker/
