@@ -3,10 +3,10 @@
 Built while learning JavaScript, with AI help. I'm rebuilding it piece by piece on my own.
 
 ## What I understand
-- (fill in honestly, e.g. HTML structure)
+- (Linking a CSs)
 
 ## What I'm still working through
-- (fill in honestly, e.g. localStorage, event listeners)
+- (Understanding JavaScript)
 
 ## Rebuild progress
 - [ ] Add a goal
