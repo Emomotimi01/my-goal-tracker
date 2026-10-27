@@ -4,9 +4,9 @@ Built while learning JavaScript, with AI help. I'm rebuilding it piece by piece 
 
 ## What I understand
 - Link a CSS file to an HTML page
-- Basic HTML structure)
+- Basic HTML structure
 
-## What I'm still working throug
+## What I'm still working through
 - Variables and data types
 - Functions
 - Arrays and looping through them
