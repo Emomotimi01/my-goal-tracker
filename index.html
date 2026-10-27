@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <title>My Goals Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL SPACE</p>
+          <h1>My Goals Tracker</h1>
+          <p class="subtitle">Small steps, big progress!</p>
+        </div>
+        <button
+          type="button"
+          id="themeToggle"
+          class="secondary-button"
+          aria-label="Toggle dark mode"
+        >
+          🌙 Dark mode
+        </button>
+      </header>
+
+      <section class="summary-grid" aria-label="Goal summary">
+        <article class="summary-card">
+          <span class="summary-label">Total goals</span>
+          <strong id="totalCount">0</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Active</span>
+          <strong id="activeCount">0</strong>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Completed</span>
+          <strong id="completedCount">0</strong>
+        </article>
+      </section>
+
+      <section class="panel" aria-labelledby="addHeading">
+        <h2 id="addHeading">Add a goal</h2>
+        <form id="goalForm">
+          <label for="taskInput">Goal name</label>
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="e.g. Finish my HTML lesson"
+            maxlength="160"
+            required
+          />
+
+          <div class="form-grid">
+            <div>
+              <label for="dueDateInput"
+                >Due date <span class="optional">(optional)</span></label
+              >
+              <input type="date" id="dueDateInput" />
+            </div>
+            <div>
+              <label for="categoryInput">Category</label>
+              <select id="categoryInput">
+                <option value="Personal">Personal</option>
+                <option value="Health">Health</option>
+                <option value="Learning">Learning</option>
+                <option value="Work">Work</option>
+              </select>
+            </div>
+            <div>
+              <label for="priorityInput">Priority</label>
+              <select id="priorityInput">
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" id="addButton" class="primary-button">
+            ＋ Add Goal
+          </button>
+          <p
+            id="formMessage"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="goalsHeading">
+        <div class="section-heading">
+          <div>
+            <h2 id="goalsHeading">Your goals</h2>
+            <p class="muted">Search, filter, and organize your goals.</p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="search-wrap">
+            <label class="visually-hidden" for="searchInput"
+              >Search goals</label
+            >
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search goals..."
+            />
+          </div>
+          <div>
+            <label class="visually-hidden" for="categoryFilter"
+              >Filter by category</label
+            >
+            <select id="categoryFilter">
+              <option value="all">All categories</option>
+              <option value="Personal">Personal</option>
+              <option value="Health">Health</option>
+              <option value="Learning">Learning</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+          <div>
+            <label class="visually-hidden" for="sortSelect">Sort goals</label>
+            <select id="sortSelect">
+              <option value="created">Recently added</option>
+              <option value="dueDate">Due date</option>
+              <option value="priority">Priority</option>
+              <option value="alphabetical">Alphabetical</option>
+            </select>
+          </div>
+        </div>
+
+        <div
+          class="task-filters"
+          role="group"
+          aria-label="Filter goals by status"
+        >
+          <button
+            type="button"
+            class="filter-button active"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="active"
+            aria-pressed="false"
+          >
+            Active
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="completed"
+            aria-pressed="false"
+          >
+            Completed
+          </button>
+        </div>
+
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state">
+          <span class="empty-icon">🌱</span>
+          <h3>No goals to show yet</h3>
+          <p>Add your first goal above, or change your filters.</p>
+        </div>
+      </section>
+
+      <section class="panel progress-panel" aria-labelledby="progressHeading">
+        <div class="section-heading">
+          <div>
+            <h2 id="progressHeading">Your progress</h2>
+            <p id="progress">Completed: 0 of 0</p>
+          </div>
+          <strong id="percentage">0%</strong>
+        </div>
+        <div
+          class="progress-container"
+          role="progressbar"
+          aria-label="Goals completed"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="progressTrack"
+        >
+          <div id="progressBar"></div>
+        </div>
+        <div id="categorySummary" class="category-summary"></div>
+      </section>
+
+      <section class="panel data-panel" aria-labelledby="dataHeading">
+        <h2 id="dataHeading">Your data</h2>
+        <p class="muted">
+          Your goals are saved in this browser. Export a backup if you want to
+          keep a copy.
+        </p>
+        <div class="data-actions">
+          <button type="button" id="exportButton" class="secondary-button">
+            Export CSV
+          </button>
+          <button type="button" id="backupButton" class="secondary-button">
+            Download backup
+          </button>
+          <label for="importInput" class="secondary-button file-button"
+            >Restore backup</label
+          >
+          <input
+            type="file"
+            id="importInput"
+            accept=".json,application/json"
+            hidden
+          />
+        </div>
+        <p
+          id="dataMessage"
+          class="form-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </section>
+
+      <footer class="app-footer">
+        <p>Progress is built one small step at a time. ✨</p>
+      </footer>
+    </main>
+
+    <dialog id="editDialog" class="edit-dialog">
+      <form id="editForm" method="dialog">
+        <div class="section-heading">
+          <h2>Edit goal</h2>
+          <button
+            type="button"
+            id="closeEditButton"
+            class="icon-button"
+            aria-label="Close edit dialog"
+          >
+            ✕
+          </button>
+        </div>
+        <input type="hidden" id="editId" />
+        <label for="editTaskInput">Goal name</label>
+        <input type="text" id="editTaskInput" maxlength="160" required />
+        <div class="form-grid">
+          <div>
+            <label for="editDueDateInput">Due date</label>
+            <input type="date" id="editDueDateInput" />
+          </div>
+          <div>
+            <label for="editCategoryInput">Category</label>
+            <select id="editCategoryInput">
+              <option value="Personal">Personal</option>
+              <option value="Health">Health</option>
+              <option value="Learning">Learning</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+          <div>
+            <label for="editPriorityInput">Priority</label>
+            <select id="editPriorityInput">
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" id="cancelEditButton" class="secondary-button">
+            Cancel
+          </button>
+          <button type="submit" class="primary-button">Save changes</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
