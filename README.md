@@ -3,10 +3,17 @@
 Built while learning JavaScript, with AI help. I'm rebuilding it piece by piece on my own.
 
 ## What I understand
-- (Link a CSS file to an HTML page, Basic HTML structure)
+- Link a CSS file to an HTML page
+- Basic HTML structure)
 
 ## What I'm still working throug
-- (Variables and data types, Functions, Arrays and looping through them, Selecting elements with document.querySelector, Event listeners, Changing the page from JavaScript, localStorage) 
+- Variables and data types
+- Functions
+- Arrays and looping through them
+- Selecting elements with document.querySelector
+- Event listeners
+- Changing the page from JavaScript
+- localStorage 
 
 ## Rebuild progress
 - [ ] Add a goal
